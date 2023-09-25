@@ -27,6 +27,11 @@ spring:
           enabled: true
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
+  global-config:
+    db-config:
+      logic-delete-field: delete_flag
+      logic-delete-value: 1
+      logic-not-delete-value: 0
 
 sql:
   beauty:
