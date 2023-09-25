@@ -24,14 +24,11 @@ public class UserPO {
 	@TableField(fill = FieldFill.INSERT)
 	private String createBy;
 
-
 	@TableField(fill = FieldFill.INSERT)
 	private Date createTime;
 
-
 	@TableField(fill = FieldFill.UPDATE)
 	private String updateBy;
-
 
 	@TableField(fill = FieldFill.UPDATE)
 	private Date updateTime;

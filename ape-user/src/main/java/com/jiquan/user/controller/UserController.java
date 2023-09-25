@@ -1,5 +1,6 @@
 package com.jiquan.user.controller;
 
+import com.jiquan.bean.Result;
 import com.jiquan.user.entity.dto.UserDto;
 import com.jiquan.user.entity.req.UserReq;
 import com.jiquan.user.service.UserService;
@@ -18,11 +19,11 @@ public class UserController {
 	private UserService userService;
 
 	@PostMapping
-	public int addUser(@RequestBody UserReq userReq){
+	public Result addUser(@RequestBody UserReq userReq){
 		UserDto userDto = new UserDto();
 		BeanUtils.copyProperties(userReq, userDto);
-		int i = userService.addUser(userDto);
-		return i;
+		return Result.ok(userService.addUser(userDto));
 	}
+
 
 }

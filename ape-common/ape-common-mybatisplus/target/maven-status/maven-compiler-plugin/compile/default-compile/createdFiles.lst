@@ -1,0 +1,3 @@
+com/jiquan/handler/CustomMetaObjectHandler.class
+com/jiquan/inteceptor/SqlBeautyInterceptor.class
+com/jiquan/config/MybatisConfiguration.class
