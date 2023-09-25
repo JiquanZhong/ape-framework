@@ -4,8 +4,6 @@ import com.baomidou.mybatisplus.annotation.*;
 import com.jiquan.entity.BaseEntity;
 import lombok.Data;
 
-import java.util.Date;
-
 /**
  * @author ZHONG Jiquan
  * @year 2023
@@ -13,7 +11,7 @@ import java.util.Date;
 
 @TableName("user")
 @Data
-public class UserPO extends BaseEntity {
+public class UserPo extends BaseEntity {
 
 	@TableId(value = "id", type = IdType.AUTO)
 	private Long id;

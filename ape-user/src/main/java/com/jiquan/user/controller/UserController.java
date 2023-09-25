@@ -2,6 +2,7 @@ package com.jiquan.user.controller;
 
 import com.jiquan.bean.Result;
 import com.jiquan.user.entity.dto.UserDto;
+import com.jiquan.user.entity.req.UserListReq;
 import com.jiquan.user.entity.req.UserReq;
 import com.jiquan.user.service.UserService;
 import org.springframework.beans.BeanUtils;
@@ -30,4 +31,11 @@ public class UserController {
 		return Result.ok(userService.delete(id));
 	}
 
+	@GetMapping
+	public Result getUserPage(@RequestBody UserListReq userListReq){
+		UserDto userDto = new UserDto();
+		System.out.println(userListReq.toString());
+		BeanUtils.copyProperties(userListReq, userDto);
+		return Result.ok(userService.getUserPage(userDto));
+	}
 }

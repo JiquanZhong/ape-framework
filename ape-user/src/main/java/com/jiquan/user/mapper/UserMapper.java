@@ -1,7 +1,9 @@
 package com.jiquan.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.jiquan.user.entity.po.UserPO;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.jiquan.user.entity.po.UserPo;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Repository;
  * @year 2023
  */
 @Repository
-public interface UserMapper extends BaseMapper<UserPO> {
+public interface UserMapper extends BaseMapper<UserPo> {
+
+	IPage<UserPo> getUserPage(IPage<UserPo>  userPoPage);
 
 }

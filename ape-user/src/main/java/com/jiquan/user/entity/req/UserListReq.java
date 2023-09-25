@@ -1,4 +1,4 @@
-package com.jiquan.user.entity.dto;
+package com.jiquan.user.entity.req;
 
 import lombok.Data;
 
@@ -7,14 +7,8 @@ import lombok.Data;
  * @year 2023
  */
 @Data
-public class UserDto {
-
-	private String name;
-
-	private Integer age;
-
+public class UserListReq {
 	private Integer pageIndex;
 
 	private Integer pageSize;
-
 }

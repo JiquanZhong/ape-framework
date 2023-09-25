@@ -1,7 +1,8 @@
 package com.jiquan.user.service;
 
+import com.jiquan.entity.PageResult;
 import com.jiquan.user.entity.dto.UserDto;
-import org.springframework.stereotype.Service;
+import com.jiquan.user.entity.po.UserPo;
 
 /**
  * @author ZHONG Jiquan
@@ -11,4 +12,7 @@ public interface UserService {
 	int addUser(UserDto userDto);
 
 	int delete(Integer id);
+
+	PageResult<UserPo> getUserPage(UserDto userPageDto);
+
 }
