@@ -27,3 +27,7 @@ spring:
           enabled: true
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
+
+sql:
+  beauty:
+    show: true

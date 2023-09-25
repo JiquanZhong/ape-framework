@@ -1,7 +1,0 @@
-com/jiquan/user/mapper/UserMapper.class
-com/jiquan/user/entity/po/UserPO.class
-com/jiquan/user/controller/UserController.class
-com/jiquan/user/service/impl/UserServiceImpl.class
-com/jiquan/user/entity/dto/UserDto.class
-com/jiquan/user/entity/req/UserReq.class
-com/jiquan/user/service/UserService.class
