@@ -1,6 +1,10 @@
 package com.jiquan.user.entity.dto;
 
+import com.jiquan.bean.PageRequest;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author ZHONG Jiquan
@@ -8,6 +12,7 @@ import lombok.Data;
  */
 @Data
 public class UserDto {
+	private Long id;
 
 	private String name;
 
@@ -16,5 +21,4 @@ public class UserDto {
 	private Integer pageIndex;
 
 	private Integer pageSize;
-
 }
