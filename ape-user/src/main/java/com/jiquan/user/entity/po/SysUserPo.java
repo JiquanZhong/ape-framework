@@ -16,7 +16,7 @@ import java.io.Serializable;
  */
 @Data
 @TableName("sys_user")
-public class SysUser implements Serializable {
+public class SysUserPo extends BaseEntity{
 
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;

@@ -4,7 +4,6 @@ import com.jiquan.bean.PageRequest;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * (SysUser)实体类
@@ -14,6 +13,8 @@ import java.util.Date;
  */
 @Data
 public class SysUserReq extends PageRequest implements Serializable {
+
+    private Long id;
 
     private String name;
     

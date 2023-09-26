@@ -1,6 +1,6 @@
-package com.jiquan.user.dao;
+package com.jiquan.user.mapper;
 
-import com.jiquan.user.entity.po.SysUser;
+import com.jiquan.user.entity.po.SysUserPo;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * @author makejava
  * @since 2023-09-25 17:56:51
  */
-public interface SysUserDao {
+public interface SysUserMapper {
 
     /**
      * 通过ID查询单条数据
@@ -18,33 +18,33 @@ public interface SysUserDao {
      * @param id 主键
      * @return 实例对象
      */
-    SysUser queryById(Long id);
+    SysUserPo queryById(Long id);
 
     /**
      * 查询指定行数据
      *
-     * @param sysUser 查询条件
+     * @param sysUserPo 查询条件
      * @param pageStart  第几页
      * @param pageSize 页大小
      * @return 对象列表
      */
-    List<SysUser> queryAllByLimit(@Param("po") SysUser sysUser, @Param("pageStart") Long pageStart, @Param("pageSize") Long pageSize);
+    List<SysUserPo> queryAllByLimit(@Param("po") SysUserPo sysUserPo, @Param("pageStart") Long pageStart, @Param("pageSize") Long pageSize);
 
     /**
      * 统计总行数
      *
-     * @param sysUser 查询条件
+     * @param sysUserPo 查询条件
      * @return 总行数
      */
-    long count(SysUser sysUser);
+    long count(SysUserPo sysUserPo);
 
     /**
      * 新增数据
      *
-     * @param sysUser 实例对象
+     * @param sysUserPo 实例对象
      * @return 影响行数
      */
-    int insert(SysUser sysUser);
+    int insert(SysUserPo sysUserPo);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）
@@ -52,7 +52,7 @@ public interface SysUserDao {
      * @param entities List<SysUser> 实例对象列表
      * @return 影响行数
      */
-    int insertBatch(@Param("entities") List<SysUser> entities);
+    int insertBatch(@Param("entities") List<SysUserPo> entities);
 
     /**
      * 批量新增或按主键更新数据（MyBatis原生foreach方法）
@@ -61,15 +61,15 @@ public interface SysUserDao {
      * @return 影响行数
      * @throws org.springframework.jdbc.BadSqlGrammarException 入参是空List的时候会抛SQL语句错误的异常，请自行校验入参
      */
-    int insertOrUpdateBatch(@Param("entities") List<SysUser> entities);
+    int insertOrUpdateBatch(@Param("entities") List<SysUserPo> entities);
 
     /**
      * 修改数据
      *
-     * @param sysUser 实例对象
+     * @param sysUserPo 实例对象
      * @return 影响行数
      */
-    int update(SysUser sysUser);
+    int update(SysUserPo sysUserPo);
 
     /**
      * 通过主键删除数据
@@ -79,5 +79,12 @@ public interface SysUserDao {
      */
     int deleteById(Long id);
 
+    /**
+     * 通过主键逻辑删除数据
+     *
+     * @param id 主键
+     * @return 影响行数
+     */
+    int logicDeleteById(Long id);
 }
 

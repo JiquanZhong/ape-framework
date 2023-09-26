@@ -2,7 +2,9 @@ package com.jiquan.user.controller;
 
 import com.jiquan.bean.PageResponse;
 import com.jiquan.bean.Result;
-import com.jiquan.user.entity.po.SysUser;
+import com.jiquan.user.convert.SysUserConverter;
+import com.jiquan.user.entity.dto.SysUserDto;
+import com.jiquan.user.entity.po.SysUserPo;
 import com.jiquan.user.entity.req.SysUserReq;
 import com.jiquan.user.service.SysUserService;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +31,10 @@ public class SysUserController {
      *
      * @return 查询结果
      */
-    @GetMapping
-    public Result<PageResponse<SysUser>> queryByPage(SysUserReq sysUserReq) {
-        return Result.ok(this.sysUserService.queryByPage(sysUserReq));
+    @GetMapping("/getPage")
+    public Result<PageResponse<SysUserPo>> queryByPage(@RequestBody SysUserReq sysUserReq) {
+        SysUserDto sysUserDto = SysUserConverter.INSTANCE.convertReqToDto(sysUserReq);
+        return Result.ok(this.sysUserService.queryByPage(sysUserDto));
     }
 
     /**
@@ -40,31 +43,33 @@ public class SysUserController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("/{id}")
-    public Result<SysUser> queryById(@PathVariable("id") Long id) {
+    @GetMapping("/get/{id}")
+    public Result<SysUserPo> queryById(@PathVariable("id") Long id) {
         return Result.ok(this.sysUserService.queryById(id));
     }
 
     /**
      * 新增数据
      *
-     * @param sysUser 实体
+     * @param sysUserReq 实体
      * @return 新增结果
      */
-    @PostMapping
-    public Result<SysUser> add(@RequestBody SysUser sysUser) {
-        return Result.ok(this.sysUserService.insert(sysUser));
+    @PostMapping("/add")
+    public Result<SysUserPo> add(@RequestBody SysUserReq sysUserReq) {
+        SysUserDto sysUserDto = SysUserConverter.INSTANCE.convertReqToDto(sysUserReq);
+        return Result.ok(this.sysUserService.insert(sysUserDto));
     }
 
     /**
      * 编辑数据
      *
-     * @param sysUser 实体
+     * @param sysUserReq 实体
      * @return 编辑结果
      */
     @PutMapping("/update")
-    public Result<SysUser> edit(@RequestBody SysUser sysUser) {
-        return Result.ok(this.sysUserService.update(sysUser));
+    public Result<SysUserPo> edit(@RequestBody SysUserReq sysUserReq) {
+        SysUserDto sysUserDto = SysUserConverter.INSTANCE.convertReqToDto(sysUserReq);
+        return Result.ok(this.sysUserService.update(sysUserDto));
     }
 
     /**
@@ -73,9 +78,9 @@ public class SysUserController {
      * @param id 主键
      * @return 删除是否成功
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public Result<Boolean> deleteById(@PathVariable Long id) {
-        return Result.ok(this.sysUserService.deleteById(id));
+        return Result.ok(this.sysUserService.logicDeleteById(id));
     }
 }
 

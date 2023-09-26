@@ -32,4 +32,20 @@ public class BaseEntity implements Serializable {
 
 	@TableField(fill = FieldFill.INSERT)
 	private Integer version;
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
+	public void insertFill() {
+		this.createBy = "jiquan";
+		this.createTime = new Date();
+		this.deleteFlag = DeleteFlag.NORAML.getValue();
+		this.version = 0;
+	}
+
+	public void updateFill() {
+		this.updateBy = "jiquan";
+		this.updateTime = new Date();
+	}
 }

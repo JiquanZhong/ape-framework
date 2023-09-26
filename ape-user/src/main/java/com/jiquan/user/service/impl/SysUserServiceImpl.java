@@ -2,9 +2,9 @@ package com.jiquan.user.service.impl;
 
 import com.jiquan.bean.PageResponse;
 import com.jiquan.user.convert.SysUserConverter;
-import com.jiquan.user.dao.SysUserDao;
-import com.jiquan.user.entity.po.SysUser;
-import com.jiquan.user.entity.req.SysUserReq;
+import com.jiquan.user.entity.dto.SysUserDto;
+import com.jiquan.user.mapper.SysUserMapper;
+import com.jiquan.user.entity.po.SysUserPo;
 import com.jiquan.user.service.SysUserService;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ import java.util.List;
 @Service("sysUserService")
 public class SysUserServiceImpl implements SysUserService {
     @Resource
-    private SysUserDao sysUserDao;
+    private SysUserMapper sysUserMapper;
 
     /**
      * 通过ID查询单条数据
@@ -29,8 +29,8 @@ public class SysUserServiceImpl implements SysUserService {
      * @return 实例对象
      */
     @Override
-    public SysUser queryById(Long id) {
-        return this.sysUserDao.queryById(id);
+    public SysUserPo queryById(Long id) {
+        return this.sysUserMapper.queryById(id);
     }
 
     /**
@@ -39,41 +39,46 @@ public class SysUserServiceImpl implements SysUserService {
      * @return 查询结果
      */
     @Override
-    public PageResponse<SysUser> queryByPage(SysUserReq sysUserReq) {
-        SysUser sysUser = SysUserConverter.INSTANCE.convertReqToSysUser(sysUserReq);
-        PageResponse<SysUser> pageResponse = new PageResponse<>();
-        pageResponse.setCurrent(sysUserReq.getPageNo());
-        pageResponse.setPageSize(sysUserReq.getPageSize());
-        Long pageStart = (sysUserReq.getPageNo() - 1) * sysUserReq.getPageSize();
-        long total = this.sysUserDao.count(sysUser);
-        List<SysUser> sysUserList = this.sysUserDao.queryAllByLimit(sysUser, pageStart, sysUserReq.getPageSize());
+    public PageResponse<SysUserPo> queryByPage(com.jiquan.user.entity.dto.SysUserDto sysUserDto) {
+        SysUserPo sysUserPo = SysUserConverter.INSTANCE.convertDtoToPo(sysUserDto);
+        Long pageStart = (sysUserDto.getPageIndex() - 1) * sysUserDto.getPageSize();
+        long total = this.sysUserMapper.count(sysUserPo);
+        List<SysUserPo> sysUserPoList = this.sysUserMapper.queryAllByLimit(sysUserPo, pageStart, sysUserDto.getPageSize());
+
+        PageResponse<SysUserPo> pageResponse = new PageResponse<>();
+        pageResponse.setCurrent(sysUserDto.getPageIndex());
+        pageResponse.setPageSize(sysUserDto.getPageSize());
         pageResponse.setTotal(total);
-        pageResponse.setRecords(sysUserList);
+        pageResponse.setRecords(sysUserPoList);
         return pageResponse;
     }
 
     /**
      * 新增数据
      *
-     * @param sysUser 实例对象
+     * @param sysUserDto 实例对象
      * @return 实例对象
      */
     @Override
-    public SysUser insert(SysUser sysUser) {
-        this.sysUserDao.insert(sysUser);
-        return sysUser;
+    public SysUserPo insert(SysUserDto sysUserDto) {
+        SysUserPo sysUserPo = SysUserConverter.INSTANCE.convertDtoToPo(sysUserDto);
+        sysUserPo.insertFill();
+        this.sysUserMapper.insert(sysUserPo);
+        return sysUserPo;
     }
 
     /**
      * 修改数据
      *
-     * @param sysUser 实例对象
+     * @param sysUserDto 实例对象
      * @return 实例对象
      */
     @Override
-    public SysUser update(SysUser sysUser) {
-        this.sysUserDao.update(sysUser);
-        return this.queryById(sysUser.getId());
+    public SysUserPo update(SysUserDto sysUserDto) {
+        SysUserPo sysUserPo = SysUserConverter.INSTANCE.convertDtoToPo(sysUserDto);
+        sysUserPo.updateFill();
+        this.sysUserMapper.update(sysUserPo);
+        return this.queryById(sysUserPo.getId());
     }
 
     /**
@@ -84,6 +89,17 @@ public class SysUserServiceImpl implements SysUserService {
      */
     @Override
     public boolean deleteById(Long id) {
-        return this.sysUserDao.deleteById(id) > 0;
+        return this.sysUserMapper.deleteById(id) > 0;
+    }
+
+    /**
+     * 通过主键逻辑删除数据
+     *
+     * @param id 主键
+     * @return 是否成功
+     */
+    @Override
+    public boolean logicDeleteById(Long id) {
+        return this.sysUserMapper.logicDeleteById(id) > 0;
     }
 }

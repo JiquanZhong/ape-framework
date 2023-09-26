@@ -1,8 +1,8 @@
 package com.jiquan.user.service;
 
 import com.jiquan.bean.PageResponse;
-import com.jiquan.user.entity.po.SysUser;
-import com.jiquan.user.entity.req.SysUserReq;
+import com.jiquan.user.entity.dto.SysUserDto;
+import com.jiquan.user.entity.po.SysUserPo;
 
 /**
  * (SysUser)表服务接口
@@ -18,31 +18,31 @@ public interface SysUserService {
 	 * @param id 主键
 	 * @return 实例对象
 	 */
-	SysUser queryById(Long id);
+	SysUserPo queryById(Long id);
 
 	/**
 	 * 分页查询
 	 *
-	 * @param sysUserReq 筛选条件
+	 * @param sysUserDto 筛选条件
 	 * @return 查询结果
 	 */
-	PageResponse<SysUser> queryByPage(SysUserReq sysUserReq);
+	PageResponse<SysUserPo> queryByPage(SysUserDto sysUserDto);
 
 	/**
 	 * 新增数据
 	 *
-	 * @param sysUser 实例对象
+	 * @param sysUserPo 实例对象
 	 * @return 实例对象
 	 */
-	SysUser insert(SysUser sysUser);
+	SysUserPo insert(SysUserDto sysUserPo);
 
 	/**
 	 * 修改数据
 	 *
-	 * @param sysUser 实例对象
+	 * @param sysUserPo 实例对象
 	 * @return 实例对象
 	 */
-	SysUser update(SysUser sysUser);
+	SysUserPo update(SysUserDto sysUserPo);
 
 	/**
 	 * 通过主键删除数据
@@ -52,4 +52,10 @@ public interface SysUserService {
 	 */
 	boolean deleteById(Long id);
 
+	/**
+	 * 逻辑删除
+	 * @param id 主键
+	 * @return
+	 */
+	boolean logicDeleteById(Long id);
 }

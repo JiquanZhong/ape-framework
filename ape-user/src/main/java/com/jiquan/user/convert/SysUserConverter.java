@@ -1,6 +1,7 @@
 package com.jiquan.user.convert;
 
-import com.jiquan.user.entity.po.SysUser;
+import com.jiquan.user.entity.dto.SysUserDto;
+import com.jiquan.user.entity.po.SysUserPo;
 import com.jiquan.user.entity.req.SysUserReq;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -14,5 +15,9 @@ public interface SysUserConverter {
 
 	SysUserConverter INSTANCE = Mappers.getMapper(SysUserConverter.class);
 
-	SysUser convertReqToSysUser(SysUserReq sysUserReq);
+	SysUserPo convertDtoToPo(SysUserDto sysUserDto);
+
+	SysUserPo convertReqToPo(SysUserReq sysUserReq);
+
+	SysUserDto convertReqToDto(SysUserReq sysUserReq);
 }

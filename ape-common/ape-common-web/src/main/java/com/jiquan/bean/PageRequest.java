@@ -1,7 +1,6 @@
 package com.jiquan.bean;
 
 import lombok.Data;
-import lombok.Setter;
 
 /**
  * @author ZHONG Jiquan
@@ -9,15 +8,15 @@ import lombok.Setter;
  */
 @Data
 public class PageRequest {
-	private Long pageNo = 1L;
+	private Long pageIndex = 1L;
 
 	private Long pageSize = 10L;
 
-	public Long getPageNo(){
-		if(pageNo == null || pageSize < 1){
+	public Long getPageIndex(){
+		if(pageIndex == null || pageSize < 1){
 			return 1L;
 		}
-		return pageNo;
+		return pageIndex;
 	}
 
 	public Long getPageSize(){
