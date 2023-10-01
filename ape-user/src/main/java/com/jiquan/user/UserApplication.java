@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @MapperScan(value = "com.jiquan.*.mapper")
-@ComponentScan(value = "com.jiquan")
+@ComponentScan("com.jiquan")
 public class UserApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(UserApplication.class);

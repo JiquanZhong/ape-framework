@@ -5,7 +5,7 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/ape?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
+    url: jdbc:mysql://localhost:3306/ape?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
     #    url: jdbc:mysql://112.124.27.61:3306/ape?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
@@ -36,3 +36,12 @@ mybatis-plus:
 sql:
   beauty:
     show: true
+
+swagger:
+  basePackage: com.jiquan.user
+  title: ape-user
+  contactName: ZHONG Jiquan
+  contactUrl: https://github.com/JiquanZhong/ape-framework.git
+  contactEmail: zhongjiquan828@gmail.com
+  version: 1.0
+  description: open-box framework of Web application

@@ -5,6 +5,8 @@ import com.jiquan.user.entity.dto.UserDto;
 import com.jiquan.user.entity.req.UserListReq;
 import com.jiquan.user.entity.req.UserReq;
 import com.jiquan.user.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +17,13 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/user")
+@Api(tags = "用户Controller")
 public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@PostMapping
+	@PostMapping("/addUsder")
+	@ApiOperation(value = "新增用户")
 	public Result addUser(@RequestBody UserReq userReq){
 		UserDto userDto = new UserDto();
 		BeanUtils.copyProperties(userReq, userDto);
