@@ -7,6 +7,8 @@ import com.jiquan.user.entity.dto.SysUserDto;
 import com.jiquan.user.entity.po.SysUserPo;
 import com.jiquan.user.entity.req.SysUserReq;
 import com.jiquan.user.service.SysUserService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -44,6 +46,7 @@ public class SysUserController {
      * @return 单条数据
      */
     @GetMapping("/get/{id}")
+    @Cacheable(cacheNames = "SysUser", key = "'querySysUserById'+#id")
     public Result<SysUserPo> queryById(@PathVariable("id") Long id) {
         return Result.ok(this.sysUserService.queryById(id));
     }
@@ -67,6 +70,7 @@ public class SysUserController {
      * @return 编辑结果
      */
     @PutMapping("/update")
+    @CacheEvict(cacheNames = "SysUser", key = "'querySysUserById'+#id")
     public Result<SysUserPo> edit(@RequestBody SysUserReq sysUserReq) {
         SysUserDto sysUserDto = SysUserConverter.INSTANCE.convertReqToDto(sysUserReq);
         return Result.ok(this.sysUserService.update(sysUserDto));

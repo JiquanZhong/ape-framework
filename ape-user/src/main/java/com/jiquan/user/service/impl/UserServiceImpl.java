@@ -10,6 +10,7 @@ import com.jiquan.user.service.UserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import springfox.documentation.annotations.Cacheable;
 
 /**
  * @author ZHONG Jiquan

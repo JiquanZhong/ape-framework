@@ -25,6 +25,17 @@ spring:
           slow-sql-millis: 2000
         wall:
           enabled: true
+  redis:
+    host: 127.0.0.1
+    port: 6379
+#    password:
+    database: 0
+    lettuce:
+      pool:
+        max-active: 20
+        min-idle: 0
+        max-idle: 8
+        max-wait: -1
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   global-config:
@@ -45,3 +56,7 @@ swagger:
   contactEmail: zhongjiquan828@gmail.com
   version: 1.0
   description: open-box framework of Web application
+
+init:
+  cache:
+    enable: true
